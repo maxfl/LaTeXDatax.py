@@ -16,6 +16,16 @@ class TestDatax(unittest.TestCase):
                 d = (3.141592,"\\meter","%.2g"),
                 e = (3.141592,"%.2g"),
                 f = Quantity(3.141592,"\\meter"),
+                **{
+                    'g': {
+                        'h': 'Another string',
+                        'i': 3.141592,
+                        'k': {
+                            'l': 'Another string',
+                            'm': 3.141592,
+                            }
+                        }
+                    }
                 )
         f.seek(0)
         written = f.read()
@@ -27,6 +37,10 @@ class TestDatax(unittest.TestCase):
 \\pgfkeyssetvalue{/datax/d}{\\SI{3.1}{\\meter}}
 \\pgfkeyssetvalue{/datax/e}{\\num{3.1}}
 \\pgfkeyssetvalue{/datax/f}{\\SI[]{3.141592}{\\meter}}
+\\pgfkeyssetvalue{/datax/g/h}{Another string}
+\\pgfkeyssetvalue{/datax/g/i}{\\num{3.142}}
+\\pgfkeyssetvalue{/datax/g/k/l}{Another string}
+\\pgfkeyssetvalue{/datax/g/k/m}{\\num{3.142}}
 """
         self.assertEqual(written,target)
 
